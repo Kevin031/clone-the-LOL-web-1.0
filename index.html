@@ -1,0 +1,977 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html charset=utf-8">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>仿LOL官网</title>
+	<style type="text/css">
+
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		div.header-nav {
+			height: 80px;
+			background-color: black;
+		}
+
+		div.logo {
+			float: left;
+			width: 220px;
+			height: 120px;
+			background-image: url(images/public-spr.png);
+			background-position: 0 -166px;
+			margin-right: 20px;
+		}
+
+		div.header-nav div.top-nav a {
+			color: #e1e1e1;
+			font-size: 16px;
+			padding-top: 20px;
+			display: inline-block;
+			text-align: center;
+			width: 120px;
+			height: 80px;
+		}
+
+		div.header-nav div.top-nav a.personal {
+			color: #e1e1e1;
+			font-size: 16px;
+			padding-top: 20px;
+			display: inline-block;
+			margin: 0 25px;
+			text-align: center;
+			width: 100px;
+		}
+
+		div.header-nav a:hover {
+			text-decoration: none;
+		}
+
+		div.header-nav a span {
+			color: #575757;
+			font-size: 12px;
+		}
+
+		div.head-focu {
+			height: 350px;
+			width: 100%;
+			background-image: url(images/pic-back-v5.jpg);
+		}
+
+		div.Edition-info {
+			margin-top: 300px;
+			float: right;
+			color:#888787;
+		}
+
+		div.Edition-info a {
+			padding:5px 14px;
+			background-color: rgba(0,0,0,0.65);
+			border: 2px solid #f5d185;
+			color: #f5d185;
+			font-size: 12px;
+			border-image: linear-gradient(to bottom, #6b5024 0%, #b88d35 100%);
+			border-image-slice: 1;
+		}
+
+		div.Edition-info a:hover {
+			text-decoration: none;
+		}
+
+		/*顶部样式*/
+
+		div.sub-nav {
+			background-color: rgba(0,0,0,0.7);
+			width: 100%;
+			height: 225px;
+			position: absolute;
+			top: 80px;
+			display: none;
+		}
+		
+		div.sub-nav div.nav-card a {
+			display: block;
+			font-size: 14px;
+			margin:10px 0; 
+			color: #e1e1e1;
+			text-align: center;
+		}
+		
+		div.sub-nav div.nav-card a:hover {
+			color: #f5d185;
+			text-decoration: none;
+		}
+
+		div.nav-card {
+			float: left;
+			width: 120px;
+			margin-right: 4px;
+		}
+
+		div.sub-nav div.container {
+			padding-left: 378px;
+		}
+
+		/*下拉导航栏*/
+
+		div.menu {
+			height: 80px;
+			width: 100%;
+			background: url(images/spr-v2.png) repeat-x 0 -242px;
+		}
+
+		div.menu div.container a {
+			font-size: 19px;
+			color: #555555;
+			display: inline-block;
+			height: 78px;
+			line-height: 78px;
+			margin-right: 50px;
+			padding:0 10px;
+		}
+
+		div.menu a:hover {
+			color: #d1ab57;
+			text-decoration: none;
+			border-bottom: 2px solid #d1ab57;
+		}
+
+		div.menu a.menu-focu {
+			color: #d1ab57;
+			text-decoration: none;
+			border-bottom: 2px solid #d1ab57;
+		}
+
+		/*菜单*/
+		
+		div.control-btn {
+			height: 60px;
+		}
+
+		div.control-btn input {
+			height: 60px;
+			padding: 0 21.4px;
+			background-color: #efefef;
+			border: none;
+		}
+
+		div.control-btn input:hover {
+			background-color: #36ab87;
+			color: #fff;
+		}
+
+		div.integrated-info {
+			padding-top: 30px;
+			background: url(images/bg-content-bottom.jpg) no-repeat center top;
+		}
+
+		a.download-link {
+			width: 100%;
+			height: 150px;
+			display: block;
+			position: absolute;
+			margin-top: -160px;
+		}
+
+		a.sidemenu-btn {
+			display: inline-block;
+			width:115px; 
+			height: 55px;
+			margin-top: 4px;
+			text-align: center;
+			line-height: 55px;
+			color: #646464;
+			background-color: #fefefe;
+		}
+
+		span.icon-guide {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -200px 0;
+		}
+
+		span.icon-uni {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -560px 0;
+		}
+
+		span.icon-mall {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -590px 0;
+		}
+
+		span.icon-logo {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -380px 0;
+		}
+
+		span.icon-cjf {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -650px 0;
+		}
+
+		span.icon-CDK {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -290px 0;
+		}
+
+		span.icon-rgm {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -620px 0;
+		}
+
+		span.icon-info {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -260px 0;
+		}
+
+		span.icon-reward {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -230px 0;
+		}
+
+		span.icon-weibo {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -500px 0;
+		}
+
+		span.icon-bbs {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -410px 0;
+		}
+
+		span.icon-kefu {
+			background-image: url(images/spr-v2.png);
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			vertical-align: middle;
+			display: inline-block;
+			background-position: -440px 0;
+		}
+
+		a.sidemenu-btn:hover {
+			background-color: #efefef;
+			text-decoration: none;
+		}
+
+		/*综合资讯*/
+		
+		div.new-info-nav {
+			height: 53px;
+			width: 100%;
+			border-bottom: solid 2px #ebecec;
+		}
+
+		div.new-info-nav-fixed {
+			position: fixed;
+			top: 0;
+			width: 750px;
+			background-color:white;
+		}
+
+		div.new-info-nav span {
+			font-size: 28px;
+			height: 53px;
+			width: 15%;
+			margin-right:20px;
+			line-height: 60px;
+			display: inline-block;
+			color: #666666;
+		}
+
+		div.new-info-nav a {
+			padding: 0 35px;
+			width: 20%;
+			height: 30px;
+			display: inline-block;
+			color: #666666;
+			font-size: 18px;
+		}
+
+		div.new-info-nav a:hover {
+			border-bottom:2px solid #d1ab57;
+			font-weight: bold;
+			color: #d1ab57;
+			text-decoration: none;
+		}
+
+		div.info-headlines {
+			margin: 20px 0;
+			width: 100%;
+			height: 124px;
+		}
+
+		div.info-headlines img {
+			float: left;
+			margin-right: 15px;
+		}
+
+		div.info-headlines a {
+			color: #3e3e3e;
+			display: inline-block;
+		}
+
+		div.info-headlines a:hover {
+			text-decoration: none;
+		}
+
+		span.first-title {
+			padding-top: 5px;
+			font-weight: bold;
+			font-size: 32px;
+			display: block;
+			float: left;
+		}
+
+		span.first-title-disc {
+			display: block;
+			color: #777777;
+		}
+
+		div.info-list a {
+			display: block;
+			color: #333333;
+			margin: 9px 0;
+			font-size: 16px;
+			width: 100%;
+		}
+
+		div.info-list a:hover {
+			text-decoration: none;
+			color: #d1ab57;
+		}
+
+		div.info-list a:hover span.info-icon {
+			background-color: #d1ab57;
+			color: #fff;
+		}
+
+		span.info-icon {
+			width: 68px;
+			display: inline-block;
+			text-align: center;
+			height: 35px;
+			line-height: 35px;
+			color: #aeaeae;
+			background: #ebebeb;
+			margin-right: 20px;
+		}
+
+		span.info-date {
+			float: right;
+			color: #a9a9a9;
+		}
+
+		button.new-info-more {
+			color: #333333;
+			display: block;
+			width: 100%;
+			line-height: 50px;
+			height: 50px;
+			text-align: center;
+			margin: 20px 0;
+			background-color: #efefef;
+			border: none;
+			font-size: 16px;
+		}
+
+		button.new-info-more:hover {
+			background-color: #dad8d8;
+			color: #333333;
+		}
+
+		div.info-card {
+			margin-bottom: 150px;
+		}
+
+		a.new-info-current {
+			border-bottom:2px solid #d1ab57;
+			font-weight: bold;
+			color: #d1ab57!important;
+			text-decoration: none;
+		}
+
+		/*最新资讯*/
+		
+		div.free-hero-card {
+			position: absolute;
+		}
+
+		div.hero-info-nav {
+			height: 53px;
+			width: 100%;
+			border-bottom: solid 2px #ebecec;
+		}
+
+		div.hero-info-nav a {
+			display: inline-block;
+			height: 53px;
+			line-height: 65px;
+			text-align: center;
+			color: #666666;
+			font-size: 18px;
+			width: 32%;
+			position: relative;
+		}
+
+		div.hero-info-nav a:hover {
+			color: #d1ab57;
+			text-decoration: none;
+			border-bottom: 2px solid #d1ab57;
+		}
+
+		div.free-hero-list {
+			margin-top: 20px;
+		}
+		
+		div.free-hero-list a {
+			display: inline-block;
+			margin-bottom:5px;
+			width: 178px;
+			height: 70px;
+		}
+
+		div.free-hero-list a:hover {
+			text-decoration: none;
+		}
+
+		div.free-hero-list a:hover span.hero-first-name {
+			display: block;
+			overflow: hidden;
+		}
+
+		span.hero-first-name {
+			width: 178px;
+			height: 70px;
+			display: block;
+			line-height: 70px;
+			text-align: center;
+			color: #c9aa71;
+			background-color:rgba(0,0,0,0.78);
+			display: none;
+		}
+
+		div.free-time {
+			margin-top: 20px;
+			color: #9F9F9F;
+			font-size: 12px;
+			float: right;
+		}
+
+		div.QTvoice {
+			margin-top: 70px;
+			width: 360px;
+			height: 81px;
+			background-image: url(images/pic-qt.jpg);
+		}
+
+		div.hero-info-footer {
+			position: absolute;
+			margin-top: 430px;
+		}
+
+		div.prompt {
+			margin-top: 10px;
+			width: 100%;
+		}
+
+		span.prompt-left {
+			display: inline-block;
+			width: 70px;
+			height: 70px;
+			background-image: url(images/spr-v2.png);
+			background-position:  -330px -89px;
+			margin-bottom: -10px;
+		}
+
+		p.prompt-right {
+			width: 300px;
+			display: inline-block;
+			font-size: 8px;
+			color: #878787;
+			line-height: 20px;
+		}
+
+		/*英雄信息*/
+		
+		div.footer {
+			padding-top: 30px;
+			width: 100%;
+			height: 155px;
+			background-image: url(images/bg-footer.jpg);
+		}
+		
+		div.footer a {
+			color: #568193;
+			font-size: 12px;
+			margin: 0 3px;
+		}
+
+		div.footer span {
+			color: #568193;
+		}
+
+		/*页脚*/		
+
+	</style>
+</head>
+<body>
+	<div class="header-nav">
+		<div class="container">
+			<div class="top-nav" id="top-nav">
+				<div class="logo"></div>
+				<a href="#">官网首页<br /><span>HOME</span></a>
+				<a href="#" class="header-pos">游戏资料<br /><span>GAME INFO</span></a>
+				<a href="#">商城/合作<br /><span>STORE</span></a>
+				<a href="#">用户互动<br /><span>COMMUNITY</span></a>
+				<a href="#">赛事中心<br /><span>EVENTS</span></a>
+				<a href="#">自助系统<br /><span>SYSTEM</span></a>
+				<a href="#" class="personal">个人中心<br /><span>USER CENTER</span></a>
+			</div>
+		</div>
+		<div class="sub-nav" id="sub-nav">
+			<div class="container">
+				<div class="nav-card">
+					<a href="#">新手指引</a>
+					<a href="#">资料库</a>
+					<a href="#">攻略中心</a>
+					<a href="#">模式实验室</a>
+					<a href="#">海克斯战利品库</a>
+					<a href="#">屏保下载</a>
+					<a href="#">英雄联盟 宇宙</a>
+				</div>
+				<div class="nav-card">
+					<a href="#">点劵充值</a>
+					<a href="#">道聚城</a>
+					<a href="#">官方周边商城</a>
+					<a href="#">英雄联盟桌游</a>
+					<a href="#">LOL信用卡</a>
+					<a href="#">网吧特权</a>
+				</div>
+				<div class="nav-card">
+					<a href="#">在线客服</a>
+					<a href="#">活动中心</a>
+					<a href="#">官方论坛</a>
+					<a href="#">官方微信</a>
+					<a href="#">官方微博</a>
+				</div>
+				<div class="nav-card">
+					<a href="#">LOL职业联赛</a>
+					<a href="#">甲级职业联赛</a>
+					<a href="#">德玛西亚杯</a>
+					<a href="#">城市英雄对抗赛</a>
+					<a href="#">高校联赛</a>
+					<a href="#">城际精英赛</a>
+					<a href="#">高校对抗赛</a>
+				</div>
+				<div class="nav-card">
+					<a href="#">点亮图标</a>
+					<a href="#">声望系统</a>
+					<a href="#">封号查询</a>
+					<a href="#">体验服申请</a>
+					<a href="#">服务器状态查询</a>
+					<a href="#">裁决之镰</a>
+					<a href="#">峡谷之巅</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$("#top-nav a").mouseenter(function(){
+				$("#sub-nav").css("display","block");
+			});
+			$("#top-nav a").mouseleave(function(){
+				$("#sub-nav").css("display","none");
+			});
+			$("#sub-nav").mouseenter(function(){
+				$("#sub-nav").css("display","block");
+			});
+			$("#sub-nav").mouseleave(function(){
+				$("#sub-nav").css("display","none");
+			});
+		});
+
+	</script>
+
+	<div class="head-focu">
+		<div class="container">
+			<div class="Edition-info">
+				<span>当前游戏版本：</span>
+				<span style="color:#f5d185;">Ver 7.9&nbsp;&nbsp;</span>
+				<a class="Edition-more" href="#">版本详情</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="menu">
+		<div class="container">
+			<a href="#" class="menu-focu">综合资讯</a>
+			<a href="#">视频中心</a>
+			<a href="#">赛事中心</a>
+			<a href="#">活动中心</a>
+		</div>
+	</div>
+
+	<div class="integrated-info">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<div id="myCarousel" class="carousel slide integrated-info-carousel">
+					    <!-- 轮播（Carousel）项目 -->
+					    <div class="carousel-inner">
+					        <div class="item active">
+					            <img src="images/1495084352.jpg">
+					        </div>
+					        <div class="item">
+					            <img src="images/1495075742.jpg">
+					        </div>
+					        <div class="item">
+					            <img src="images/1495069955.jpg">
+					        </div>
+					        <div class="item">
+					            <img src="images/1495010973.jpg">
+					        </div>
+					        <div class="item">
+					            <img src="images/1494904357.jpg">
+					        </div>
+					    </div>
+					    <!-- 控制按钮 -->
+					    <div class="control-btn" style="text-align:center;">
+					        <input type="button" class="slide-one" value="520怦然行动">
+					        <input type="button" class="slide-two" value="季中赛半决赛赛程">            
+					        <input type="button" class="slide-three" value="终极永久皮肤免费领">
+					        <input type="button" class="slide-four" value="套路代表我的心">
+					        <input type="button" class="slide-five" value="季中版本宝典">
+					    </div>
+					</div> 
+					<script>
+					$(function(){
+					        // 初始化轮播
+					        $(".start-slide").mouseenter(function(){
+					            $("#myCarousel").carousel('cycle');
+					        });
+					        // 循环轮播到某个特定的帧 
+					        $(".slide-one").mouseenter(function(){
+					            $("#myCarousel").carousel(0);
+					            $(".slide-one").addclass(".control-focu");
+					        });
+					        $(".slide-two").mouseenter(function(){
+					            $("#myCarousel").carousel(1);
+					        });
+					        $(".slide-three").mouseenter(function(){
+					            $("#myCarousel").carousel(2);
+					        });
+					        $(".slide-four").mouseenter(function(){
+					            $("#myCarousel").carousel(3);
+					        });
+					        $(".slide-five").mouseenter(function(){
+					            $("#myCarousel").carousel(4);
+					        });
+					    });
+					</script>
+				</div>
+				<div class="col-md-4">
+					<div class="sidemenu">
+						<video src="images/down.mp4" autoplay loop width="360px;"></video>
+						<a href="#" class="download-link"><strong style="display:none;">下载游戏</strong></a>
+						<a href="#" class="sidemenu-btn"><span class="icon-guide"></span>新手推荐</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-uni"></span>宇宙官网</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-mall"></span>周边商城</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-logo"></span>新客户端</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-cjf"></span>峡谷之巅</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-CDK"></span>CDK兑换</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-rgm"></span>轮换模式</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-info"></span>游戏资料</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-reward"></span>领奖中心</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-weibo"></span>官方微博</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-bbs"></span>玩家论坛</a>
+						<a href="#" class="sidemenu-btn"><span class="icon-kefu"></span>在线客服</a>
+					</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<div class="row">
+				<div class="col-md-8">
+					
+					<div class="new-info-nav" id="new-info-nav">
+						<span>最新资讯</span>
+						<a href="#info-card1" class="new-info-current">综合新闻</a>
+						<a href="#info-card2">官方公告</a>
+						<a href="#info-card3">赛事新闻</a>
+						<a href="#info-card4">论坛资讯</a>
+					</div>
+					<div id="content">
+						<div class="info-card" id="info-card1">
+							<div class="info-headlines">
+								<a href="#">
+									<img src="images/pic-news3.jpg">
+									<span class="first-title">520 《怦然行动》 跨界明星强势助阵</span>
+									<span class="first-title-disc">跨界明星强势加入，嘉宾睡态首度曝光。</span>
+								</a>
+							</div>
+							<div class="info-list">
+								<a href="#"><span class="info-icon">新闻</span>明星挑战搞笑惊奇秀歌斗智！怦然行动倒计时！<span class="info-date">05/17</span></a>
+								<a href="#"><span class="info-icon">新闻</span>开发者日记：非主流游戏风格<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">新闻</span>劫：瞬狱影杀阵<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">新闻</span>老版客户端正式在部分服务器退役<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">新闻</span>5月19日免费英雄更换公告<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">新闻</span>SKT迎宿敌FW挑战 谁将率先挺进决赛？<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">新闻</span>英雄联盟动画工坊正式开启<span class="info-date">05/15</span></a>
+								<a href="#"><span class="info-icon">新闻</span>全国高校联赛线上赛落幕 八强出击总决赛<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">新闻</span>峡谷之巅巅峰对决 德杯现场等你来一战成名<span class="info-date">05/15</span></a>
+								<a href="#"><span class="info-icon">新闻</span>英雄联盟周边商城520用“爱”套路你<span class="info-date">05/15</span></a>
+								<button class="new-info-more" href="#">阅读更多<span style="color: #d1ab57;">最新资讯</span></a>
+							</div>
+						</div>
+
+						<div class="info-card" id="info-card2">
+							<div class="info-headlines">
+								<a href="#">
+									<img src="images/pic-news3.jpg">
+									<span class="first-title">5月19日早6点至中午12点全区临时</span>
+									<span class="first-title-disc">由于系统维护需要，我们将于5月19日早6点至中午12点进行全区临时停机维护。</span>
+								</a>
+							</div>
+							<div class="info-list">
+								<a href="#"><span class="info-icon">公告</span>男爵领域商城系统和海克斯科技系统维护公告<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">公告</span>水晶之痕和扭曲丛林大区新版客户端替换测试开始<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">公告</span>公告扭曲树精茂凯禁用公告<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">公告</span>老版客户端正式在部分服务器退役<span class="info-date">05/17</span></a>
+								<a href="#"><span class="info-icon">公告</span>5月19日免费英雄更换公告<span class="info-date">05/17</span></a>
+								<a href="#"><span class="info-icon">公告</span>任务系统二期扩大测试规模<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">公告</span>征服之海大区紧急停机维护公告<span class="info-date">05/14</span></a>
+								<a href="#"><span class="info-icon">公告</span>均衡教派、征服之海等大区新版客户端替换测试开始<span class="info-date">05/11</span></a>
+								<a href="#"><span class="info-icon">公告</span>死兆星奇点模式提前测试公告<span class="info-date">05/11</span></a>
+								<a href="#"><span class="info-icon">公告</span>比赛服下载地址更新公告<span class="info-date">05/11</span></a>
+								<button class="new-info-more" href="#">阅读更多<span style="color: #d1ab57;">最新资讯</span></a>
+							</div>
+						</div>
+
+						<div class="info-card" id="info-card3">
+							<div class="info-headlines">
+								<a href="#">
+									<img src="images/pic-news2.jpg">
+									<span class="first-title">德杯金鹰电竞站（长沙）售票开启！</span><br /><br /><br />
+									<span class="first-title-disc">德玛西亚杯长沙站是由腾讯游戏《英雄联盟》主办，汇集国内顶尖战队参赛的“德玛西亚杯“长沙站即在5月23日拉开战幕。</span>
+								</a>
+							</div>
+							<div class="info-list">
+								<a href="#"><span class="info-icon">赛事</span>6月1日德杯落地电竞大省湖南长沙！<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">赛事</span>赛事SKT迎宿敌FW挑战 谁将率先挺进决赛？<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">赛事</span>全国高校联赛线上赛落幕 八强出击总决赛<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">赛事</span>极限操作：Xiye卢锡安冷酷追击<span class="info-date">05/17</span></a>
+								<a href="#"><span class="info-icon">赛事</span>连续单杀Faker的男人 势不可挡的“卢兮夜”<span class="info-date">05/17</span></a>
+								<a href="#"><span class="info-icon">赛事</span>7分钟速看WE复仇SKT<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">赛事</span>MSI每日报Day5：WE击败SKT 小组赛收官<span class="info-date">05/14</span></a>
+								<a href="#"><span class="info-icon">赛事</span>Xiye越塔单杀faker WE胜SKT晋级半决赛<span class="info-date">05/11</span></a>
+								<a href="#"><span class="info-icon">赛事</span>2017季中冠军赛：奖金池更新<span class="info-date">05/11</span></a>
+								<a href="#"><span class="info-icon">赛事</span>WE再度挑战SKT冲击榜首！<span class="info-date">05/11</span></a>
+								<button class="new-info-more" href="#">阅读更多<span style="color: #d1ab57;">最新资讯</span></a>
+							</div>
+						</div>
+
+						<div class="info-card" id="info-card4">
+							<div class="info-headlines">
+								<a href="#">
+									<img src="images/pic-news2.jpg">
+									<span class="first-title">问拳头:向鬼蟹提问2017季中版本改动</span><br /><br /><br />
+									<span class="first-title-disc">在提问区填写您关于2017赛季季中版本的问题，拳头游戏首席设计师鬼蟹将回答玩家们最关心的季中版本问题。</span>
+								</a>
+							</div>
+							<div class="info-list">
+								<a href="#"><span class="info-icon">论坛</span>新版客户端专贴<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">论坛</span>论坛【问拳头第二十四期】性感小伙子怎么样<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">论坛</span>论坛【防坑大指南】5月18日周免攻略<span class="info-date">05/18</span></a>
+								<a href="#"><span class="info-icon">论坛</span>【话题】科学怪人，蛮子新皮肤来袭<span class="info-date">05/17</span></a>
+								<a href="#"><span class="info-icon">论坛</span>洛与霞专场，点击领取狗粮~<span class="info-date">05/17</span></a>
+								<a href="#"><span class="info-icon">论坛</span>SKT称小黑将出山拯救队伍<span class="info-date">05/16</span></a>
+								<a href="#"><span class="info-icon">论坛</span>LOL之最要不得，人头该拿不要让<span class="info-date">05/14</span></a>
+								<a href="#"><span class="info-icon">论坛</span>美测服：男枪的统治时代或将结束<span class="info-date">05/11</span></a>
+								<a href="#"><span class="info-icon">论坛</span>【每周一辩】你喜欢哪类游戏竞技？<span class="info-date">05/11</span></a>
+								<a href="#"><span class="info-icon">论坛</span>女英雄整容对比，职业选手COS还珠格格<span class="info-date">05/11</span></a>
+								<button class="new-info-more" href="#">阅读更多<span style="color: #d1ab57;">最新资讯</span></a>
+							</div>
+						</div>
+					</div>
+
+					<script type="text/javascript">
+
+						$(document).ready(function(){
+
+							$(window).scroll(function(){
+								var menu = $("#new-info-nav");
+								var items = $("#content").find(".info-card");
+								var top = $(document).scrollTop();
+								var currentId = "";
+								items.each(function(){
+									var m = $(this);
+									if(top > m.offset().top - 160){
+										currentId = "#" + m.attr("id");
+									}
+									else {
+										return false;
+									}
+								});
+								var currentLink = menu.find(".new-info-current");
+								if (currentId && currentLink.attr("href") != currentId){
+									currentLink.removeClass("new-info-current");
+									menu.find("[href=" + currentId + "]").addClass("new-info-current");
+								}
+							});
+
+							$(window).scroll(function(){
+								var top = $(document).scrollTop();
+								var menu = $("#new-info-nav");
+								if (top > menu.offset().top + 53){
+									menu.addClass("new-info-nav-fixed");
+								}
+								if (top < 977) {
+									menu.removeClass("new-info-nav-fixed");
+								}
+							});
+						});
+
+					</script>
+
+					<!--<script type="text/javascript">
+
+						$(document).ready(function(){
+							$("div.info-list a").mouseenter(function(){
+								$("div.info-list a").css("color","#f5d185");
+							});
+							$("div.info-list a").mouseleave(function(){
+								$("div.info-list a").css("color","#333333");
+							});
+						});
+
+					</script>-->
+
+				</div>
+				<div class="col-md-4">
+					<div class="hero-info-nav">
+						<a href="#">周免英雄</a>
+						<a href="#">最新皮肤</a>
+						<a href="#">最新英雄</a>
+					</div>
+					<div class="free-hero-card">
+						<div class="free-hero-list">
+							<a href="#" style="background-image:url(images/Camille.jpg);overflow:hidden;"><span class="hero-first-name">青钢影</span></a>
+							<a href="#" style="background-image:url(images/Darius.jpg);overflow:hidden;"><span class="hero-first-name">诺克萨斯之手</span></a>
+							<a href="#" style="background-image:url(images/Hecarim.jpg);overflow:hidden;"><span class="hero-first-name">战争之影</span></a>
+							<a href="#" style="background-image:url(images/Jinx.jpg);overflow:hidden;"><span class="hero-first-name">暴走萝莉</span></a>
+							<a href="#" style="background-image:url(images/Lucian.jpg);overflow:hidden;"><span class="hero-first-name">圣枪游侠</span></a>
+							<a href="#" style="background-image:url(images/Sona.jpg);overflow:hidden;"><span class="hero-first-name">琴瑟仙女</span></a>
+							<a href="#" style="background-image:url(images/Trundle.jpg);overflow:hidden;"><span class="hero-first-name">巨魔之王</span></a>
+							<a href="#" style="background-image:url(images/Veigar.jpg);overflow:hidden;"><span class="hero-first-name">邪恶小法师</span></a>
+							<a href="#" style="background-image:url(images/Warwick.jpg);overflow:hidden;"><span class="hero-first-name">祖安怒兽</span></a>
+							<a href="#" style="background-image:url(images/Zed.jpg);overflow:hidden;"><span class="hero-first-name">影流之主</span></a>
+						</div>
+						<div class="free-time">
+							<span>免费时间：2017-05-12 至 2017-05-19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						</div>
+					</div>
+					
+					<div class="hero-info-footer">
+						<div class="QTvoice"></div>
+						<div class="prompt">
+							<span class="prompt-left"></span>
+							<p class="prompt-right"><span style="font-size: 14px;color:#404040;">本游戏适合18岁（含）以上玩家娱乐</span><br /> 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 <br /> 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<div class="footer">
+		<div class="container">
+			<div style="float:right;">
+				<div class="footer-info">
+					<div class="footer-link">
+						<a href="#">腾讯互动娱乐</a><span>|</span><a href="#">服务条款</a><span>|</span><a href="#">广告服务</a><span>|</span><a href="#">腾讯游戏招聘</a><span>|</span><a href="#">腾讯游戏客服</a><span>|</span><a href="#">游戏活动</a><span>|</span><a href="#">游戏地图</a><span>|</span><a href="#">商务合作</a><span>|</span><a href="#">腾讯网</a><span>|</span><a href="#">网站导航</a>
+					</div>
+					<div class="copyright">
+						<a href="#">腾讯公司版权所有</a><br />
+						<span style="color:#415967;font-size:12px;">COPYRIGHT © 1998 - 2017 TENCENT. ALL RIGHTS RESERVED.</span><br />
+						<span style="color:#415967;font-size:12px;">© 2012 Riot Games, Inc. ALL RIGHTS RESERVED.</span><br />
+						<span style="color:#A5A5A5;font-size:12px;">文网进字[2011] 004号 &amp; ISBN 978-7-89989-145-2 </span><span>|</span><a href="#">新出网证（粤）字010号</a><span>|</span><a href="#">粤网文[2014]0633-233号</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<br /><br />
+
+	
+
+</body>
+</html>
