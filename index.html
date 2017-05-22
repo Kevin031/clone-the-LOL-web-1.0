@@ -59,7 +59,7 @@
 		div.head-focu {
 			height: 350px;
 			width: 100%;
-			background-image: url(images/pic-back-v5.jpg);
+			background: url(images/pic-back-v5.jpg) no-repeat center;
 		}
 
 		div.Edition-info {
@@ -551,6 +551,12 @@
 			line-height: 20px;
 		}
 
+		div.hero-card-position {
+			position: fixed;
+			top: 44px;
+			width: 390px;
+		}
+
 		/*英雄信息*/
 		
 		div.footer {
@@ -911,38 +917,60 @@
 					</script>-->
 
 				</div>
-				<div class="col-md-4">
-					<div class="hero-info-nav">
-						<a href="#">周免英雄</a>
-						<a href="#">最新皮肤</a>
-						<a href="#">最新英雄</a>
-					</div>
-					<div class="free-hero-card">
-						<div class="free-hero-list">
-							<a href="#" style="background-image:url(images/Camille.jpg);overflow:hidden;"><span class="hero-first-name">青钢影</span></a>
-							<a href="#" style="background-image:url(images/Darius.jpg);overflow:hidden;"><span class="hero-first-name">诺克萨斯之手</span></a>
-							<a href="#" style="background-image:url(images/Hecarim.jpg);overflow:hidden;"><span class="hero-first-name">战争之影</span></a>
-							<a href="#" style="background-image:url(images/Jinx.jpg);overflow:hidden;"><span class="hero-first-name">暴走萝莉</span></a>
-							<a href="#" style="background-image:url(images/Lucian.jpg);overflow:hidden;"><span class="hero-first-name">圣枪游侠</span></a>
-							<a href="#" style="background-image:url(images/Sona.jpg);overflow:hidden;"><span class="hero-first-name">琴瑟仙女</span></a>
-							<a href="#" style="background-image:url(images/Trundle.jpg);overflow:hidden;"><span class="hero-first-name">巨魔之王</span></a>
-							<a href="#" style="background-image:url(images/Veigar.jpg);overflow:hidden;"><span class="hero-first-name">邪恶小法师</span></a>
-							<a href="#" style="background-image:url(images/Warwick.jpg);overflow:hidden;"><span class="hero-first-name">祖安怒兽</span></a>
-							<a href="#" style="background-image:url(images/Zed.jpg);overflow:hidden;"><span class="hero-first-name">影流之主</span></a>
+
+				<div class="col-md-4" id="hero-card-position">
+					<div id="hero-card">
+						<div class="hero-info-nav">
+							<a href="#">周免英雄</a>
+							<a href="#">最新皮肤</a>
+							<a href="#">最新英雄</a>
 						</div>
-						<div class="free-time">
-							<span>免费时间：2017-05-12 至 2017-05-19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<div class="free-hero-card">
+							<div class="free-hero-list">
+								<a href="#" style="background-image:url(images/Camille.jpg);overflow:hidden;"><span class="hero-first-name">青钢影</span></a>
+								<a href="#" style="background-image:url(images/Darius.jpg);overflow:hidden;"><span class="hero-first-name">诺克萨斯之手</span></a>
+								<a href="#" style="background-image:url(images/Hecarim.jpg);overflow:hidden;"><span class="hero-first-name">战争之影</span></a>
+								<a href="#" style="background-image:url(images/Jinx.jpg);overflow:hidden;"><span class="hero-first-name">暴走萝莉</span></a>
+								<a href="#" style="background-image:url(images/Lucian.jpg);overflow:hidden;"><span class="hero-first-name">圣枪游侠</span></a>
+								<a href="#" style="background-image:url(images/Sona.jpg);overflow:hidden;"><span class="hero-first-name">琴瑟仙女</span></a>
+								<a href="#" style="background-image:url(images/Trundle.jpg);overflow:hidden;"><span class="hero-first-name">巨魔之王</span></a>
+								<a href="#" style="background-image:url(images/Veigar.jpg);overflow:hidden;"><span class="hero-first-name">邪恶小法师</span></a>
+								<a href="#" style="background-image:url(images/Warwick.jpg);overflow:hidden;"><span class="hero-first-name">祖安怒兽</span></a>
+								<a href="#" style="background-image:url(images/Zed.jpg);overflow:hidden;"><span class="hero-first-name">影流之主</span></a>
+							</div>
+							<div class="free-time">
+								<span>免费时间：2017-05-12 至 2017-05-19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							</div>
 						</div>
-					</div>
-					
-					<div class="hero-info-footer">
-						<div class="QTvoice"></div>
-						<div class="prompt">
-							<span class="prompt-left"></span>
-							<p class="prompt-right"><span style="font-size: 14px;color:#404040;">本游戏适合18岁（含）以上玩家娱乐</span><br /> 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 <br /> 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+						
+						<div class="hero-info-footer">
+							<div class="QTvoice"></div>
+							<div class="prompt">
+								<span class="prompt-left"></span>
+								<p class="prompt-right"><span style="font-size: 14px;color:#404040;">本游戏适合18岁（含）以上玩家娱乐</span><br /> 抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 <br /> 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+							</div>
 						</div>
+
+						<script type="text/javascript">
+
+							$(document).ready(function(){
+								$(window).scroll(function(){
+									var cardTop = $("#hero-card-position").offset().top;
+									var top = $(document).scrollTop();						
+									console.log(top);
+									if(top > 917){
+										$("#hero-card").addClass("hero-card-position");
+									}
+									if(top < 916){
+										$("#hero-card").removeClass("hero-card-position");
+									}
+								});
+							});
+
+						</script>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
